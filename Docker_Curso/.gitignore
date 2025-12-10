@@ -1,0 +1,29 @@
+# Dados do MySQL - não devem ir para o repositório
+mysql/
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.production
+
+# Certificados e chaves
+*.pem
+*.key
+*.crt
