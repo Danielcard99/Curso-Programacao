@@ -286,3 +286,11 @@ NO container o arquivo tem que se chamar default.conf, o **nginx** por padrão, 
 
 ## GIT FLOW
 
+quando usamos o git flow hotfix usamos sempre a versão, fazemos isso para que a tag fique correta, e para mostar qual versão foi corrigida
+
+EXEMPLO:
+
+git flow hotfix start 0.1.0
+
+git flow hotfix finish 0.1.0
+
