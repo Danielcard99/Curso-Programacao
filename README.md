@@ -308,3 +308,65 @@ git flow hotfix finish 0.1.0
 Devemos usar o gpg para proteção!
 
 Devemos configurar as Rulesets para que não possam fazer push direto no main, devemos usar PR(Pull REQUEST)
+
+### No GitFlow, a branch principal do repositório é `develop`
+
+E não a `main`.
+
+A lógica é:
+
+`develop` → onde todo desenvolvimento acontece, recebe features, hotfixes, etc.
+
+`main` → só recebe versões estáveis, normalmente com tag (ex: v1.0.0).
+
+### COMO FICA O FLUXO CORRETO
+
+`develop` = branch padrão (default)
+
+- Pull requests vão para ela
+
+- Todo mundo trabalha nela
+
+- Cada feature branch nasce de develop
+
+`main` = branch de releases
+
+- Só recebe merge quando você fecha uma versão
+
+- Geralmente via PR “Release X.X.X”
+
+- Recebe uma tag depois do merge
+
+- Fica sempre estável
+
+### ENTÃO O FLUXO DE MERGE É:
+
+`feature/\* → develop → main (release)`
+
+### Vantagem de deixar `develop` como default:
+
+- Evita PR acidental indo para main
+
+- Mantém a main sempre limpa e estável
+
+- Facilita CI/CD (por exemplo:
+  develop → homologação
+  main → produção)
+
+Criar uma nova Branch
+
+```bash
+git checkout -b nome-da-branch
+```
+
+EXEMPLO:
+
+```bash
+git checkout -b feature/login
+```
+
+#### caso já exista uma branch e você só queira trocar pra ela:
+
+```bash
+git checkout nome-da-branch
+```
