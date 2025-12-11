@@ -2,6 +2,8 @@
 
 ## DOCKER
 
+### Bind Mount (Compartilhar arquivos entre máquina e container)
+
 Sempre que precisamos **compartilhar um arquivo ou uma pasta da máquina com o container**, usamos o **bind mount**. A função principal do bind é exatamente essa: fazer com que o container enxergue e trabalhe com arquivos que estão no nosso sistema local.
 
 Além disso, o bind também é útil quando você **não quer instalar uma tecnologia ou linguagem direto na sua máquina**. Você pode instalar tudo dentro do container e, mesmo assim, manter os arquivos criados lá **salvos na sua máquina local**, já que o diretório fica sincronizado entre os dois ambientes.
@@ -12,7 +14,9 @@ Além disso, o bind também é útil quando você **não quer instalar uma tecno
 docker run --mount type=bind,source="$(pwd)",target=/app imagem
 ```
 
-`Source` é o arquivo da máquina e target é o "destino" ou o arquivo do container.
+- `source` → sua pasta local
+
+- `target` → onde a pasta aparece dentro do container
 
 ### EXEMPLO REAL:
 
@@ -24,11 +28,11 @@ docker run -it --rm --mount type=bind,source="$(pwd)",target=/app -w /app \ gola
 
 - **target=/app** → sua pasta local aparece em /app lá dentro.
 
-- **-w /app** → você já entra no container DENTRO dessa pasta.
+- **-w /app** → você já entra no container `DENTRO` dessa pasta.
 
 - **sh** → abre o shell.
 
-### Para nomear um container use o --name
+- **--name** → dá nome ao container
 
 ## Portas
 
@@ -38,15 +42,17 @@ docker run -it --rm --mount type=bind,source="$(pwd)",target=/app -w /app \ gola
 docker run -d -p 5000:8080 --name gabriele danielcard99/golang:latest
 ```
 
-- A porta à direita é sempre a porta interna do container (onde sua app está escutando).
+- Esquerda (5000) = porta da sua máquina
 
-- A porta à esquerda você escolhe livremente, desde que esteja livre no seu computador.
+- Direita (8080) = porta interna do container
 
-- Você não precisa alterar o código para mudar a porta do host, só se quiser mudar a porta do container.
+- Você pode mudar a porta da máquina sem alterar o código
+
+- Só altere a porta interna se quiser mudar onde a app escuta de fato
 
 ## TAG
 
-para dar uma tag (nome + versão) na hora de buildar uma imagem usamos -t e o nome que você colocar vai ser o nome da imagem
+para dar uma tag (nome + versão) na hora de "buildar" uma imagem usamos -t e o nome que você colocar vai ser o nome da imagem
 
 EXEMPLO:
 
@@ -76,7 +82,7 @@ docker build -t nome:tag .
 
 ## IMAGEM SCRATCH
 
-É UMA IMAGEM VAZIA, LITERALEMNTE SEM NADA
+É UMA IMAGEM VAZIA, LITERALMENTE SEM NADA
 
 - sem Linux
 - sem shell
@@ -127,7 +133,7 @@ Só reduz o tamanho do executável, fazendo com que a imagem final seja menor.
 
 Por que usar UPX no Dockerfile?
 
-No seu caso:
+EXEMPLO:
 
 `RUN upx --best --lzma /usr/src/app/app`
 
@@ -171,7 +177,7 @@ Exemplo:
 
 `ENTRYPOINT ["/app"]`
 
-- Toda vez que você rodar o container, ele vai executar /app.
+- Toda vez que você rodar o container **docker run**, ele vai executar /app.
 - Você não precisa digitar nada ao rodar docker run — o container já sabe o que fazer.
 
 ## CMD
@@ -192,7 +198,7 @@ Exemplos:
   docker run imagem outro-comando
 - O CMD será substituído por outro-comando
 
-+## COPY
+## COPY
 
 Serve para copiar arquivos ou diretórios do contexto de build local ou de uma imagem anterior(via alias) para dentro da imagem final.
 
@@ -298,3 +304,7 @@ git flow hotfix start 0.1.0
 
 git flow hotfix finish 0.1.0
 ```
+
+Devemos usar o gpg para proteção!
+
+Devemos configurar as Rulesets para que não possam fazer push direto no main, devemos usar PR(Pull REQUEST)
