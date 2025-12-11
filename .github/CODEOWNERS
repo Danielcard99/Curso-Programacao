@@ -1,3 +1,4 @@
 *.js @Danielcard99
 .github/ @Danielcard99
 *.go @Danielcard99
+*.html @Danielcard99
