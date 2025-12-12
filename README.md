@@ -370,3 +370,214 @@ git checkout -b feature/login
 ```bash
 git checkout nome-da-branch
 ```
+
+### Como limpar as branches remotas que já foram apagadas no GitHub
+
+Execute:
+
+```bash
+git fetch --prune
+```
+
+Ou a forma mais moderna:
+
+```bash
+git remote prune origin
+```
+
+Isso remove do seu computador todas as referências remotas que não existem mais no GitHub.
+
+### PR TEMPLATES
+
+Para criar Templates para os PRs devemos criar uma pasta .github/PULL_REQUEST_TEMPLATE.md assim podemos criar o template em markdown
+
+## SemVer (Semantical Versioning)
+
+### 2.1.4
+
+## (2) - Major
+
+- Usamos quando vamos fazer mudanças grandes, você aumenta esse número quando faz alterações incompatíveis com versões anteriores.
+
+**EXEMPLOS:**
+
+- Remove uma função
+
+- Muda um comportamento de forma que quebra código existente
+
+## (1) - Minor
+
+- Adicionado funcionalidades, mas compatível com a API. aumenta quando adicionamos novas funcionalidades sem quebrar nada já existente.
+
+**EXEMPLOS:**
+
+- Criou um novo endpoint
+
+- Adicionou um parâmetro opcional
+
+- Expandiu recursos sem causar breaking change
+
+## (4) - Patch
+
+- Aumenta quando você faz correções de bugs, sem mudar comportamento e sem adicionar features.
+
+**EXEMPLOS:**
+
+- Corrigiu um erro de validação
+
+- Ajustou um retorno
+
+- Corrigiu um typo que quebrava algo
+
+MAJOR = 0 - API Instável. Pode mudar a qualquer momento.
+
+### Pré-release e builds
+
+#### Pré-release:
+
+Usamos quando temos versões instáveis.  
+Usa um - depois da versão:
+
+- 1.0.0-alpha
+- 1.0.0-beta.2
+- 2.3.1-rc.1 (release candidate 1)
+
+#### Build metadata:
+
+Usa +:
+
+- 1.0.0+exp.sha.5114f85
+
+## Conventional Commits
+
+**Template:**
+
+```
+<tipo>[escopo opcional]: <descrição>
+
+[corpo opcional]
+
+[rodapé(s) opcional(is)]
+```
+
+## Tipos
+
+#### FIX
+
+DEVE ser usado quando um commit representa a correção de um problema em seu aplicativo ou biblioteca.
+
+**Exemplos:**
+
+- fix: corrigir erro ao atualizar usuário
+
+- fix: resolver problema de CORS no login
+
+#### FEAT
+
+DEVE ser usado quando um commit adiciona um novo recurso ao seu aplicativo ou biblioteca.
+
+**Exemplos:**
+
+- feat: adicionar endpoint de criação de usuário
+
+- feat: implementar upload de arquivos
+
+### DOCS
+
+Deve ser usado somente para mudanças na documentação
+
+**Exemplos:**
+
+- docs: atualizar README
+
+- docs: adicionar exemplos na API
+
+### STYLE
+
+Deve ser usado quando você altera formatação, mas não muda a lógica.
+
+**Exemplos:**
+
+- style: aplicar prettier no projeto
+
+- style: ajustar indentação
+
+### CHORE
+
+Deve ser usado para mudanças que não afetam o código da aplicação
+
+**Exemplos:**
+
+- chore: atualizar dependências
+
+- chore: configurar husky
+
+- chore: mudar script do package.json
+
+### REFACTOR
+
+Quando você altera o código sem mudar comportamento e sem adicionar feature.
+
+**Exemplos:**
+
+- refactor: remover função duplicada
+
+- refactor: otimizar consulta ao banco
+
+### TEST
+
+Deve ser usado quando adicionamos ou alteramos testes.
+
+**Exemplos:**
+
+- test: adicionar testes unitários para UserService
+
+- test: corrigir mock
+
+### PERF
+
+deve ser usado quando a mudança melhora a performance.
+
+**Exemplos:**
+
+- perf: reduzir tempo de resposta no endpoint /posts
+
+- perf: otimizar loop de validação
+
+### BUILD:
+
+Mudanças que afetam o processo de build ou dependências.
+
+**Exemplos:**
+
+- build: configurar webpack
+
+- build: atualizar versão do Node
+
+### CI:
+
+Mudanças em pipelines ou integrações contínuas.
+
+**Exemplos:**
+
+- ci: corrigir workflow de deploy
+
+- ci: adicionar lint no GitHub Actions
+
+## Complementos úteis
+
+### BREAKING CHANGE
+
+Se sua mudança quebra compatibilidade, adicione isso no corpo do commit.
+
+Caso eu não queira usar o breaking change, posso usar uma exclamação após o tipo.
+
+Exemplo:
+
+```bash
+feat: alterar retorno do endpoint /users
+
+BREAKING CHANGE: agora o endpoint retorna um array em vez de um objeto.
+```
+
+Usar COMMITLINT para não errar nos commits, de acordo com os conventional commits, ele verifica os commits e diz onde está os erros antes dos commits serem feitos!
