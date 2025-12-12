@@ -581,3 +581,64 @@ BREAKING CHANGE: agora o endpoint retorna um array em vez de um objeto.
 ```
 
 Usar COMMITLINT para não errar nos commits, de acordo com os conventional commits, ele verifica os commits e diz onde está os erros antes dos commits serem feitos!
+
+## COMMITIZEN
+
+Instalação:
+
+```bash
+npm install --save-dev commitizen
+npm install --save-dev @commitlint/cz-commitlint
+```
+
+Para usar o commitizen devemos criar uma pasta na raiz do projeto chamada: .czrc (dizendo qual adaptador usar):
+
+`{ "path": "@commitlint/cz-commitlint" }`
+
+### Configurar o Commitlint
+
+```bash
+npm install --save-dev @commitlint/config-conventional @commitlint/cli
+```
+
+Crie commitlint.config.js na raiz com:
+
+`export default { extends: ["@commitlint/config-conventional"] };`
+
+### Configurar Husky para hooks de commit
+
+```bash
+npm install --save-dev husky
+npx husky install
+```
+
+### Adicionar ao package.json (scripts):
+
+```
+"scripts": {
+"prepare": "husky install"
+}
+```
+
+### Criar hook para commit-msg:
+
+```bash
+npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
+```
+
+### Fluxo de Uso:
+
+- Faça alterações nos arquivos.
+- Adicione ao staged:
+
+```bash
+git add (nomeDoArquivo)
+```
+
+### Rode o Commitizen:
+
+```bash
+npx cz
+```
+
+O npx cz abrirá um prompt interativo para você escolher tipo, escopo, descrição curta, descrição longa, breaking changes e issues relacionadas.
