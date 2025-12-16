@@ -642,3 +642,6 @@ npx cz
 ```
 
 O npx cz abrirá um prompt interativo para você escolher tipo, escopo, descrição curta, descrição longa, breaking changes e issues relacionadas.
+
+## CI - Integração Continua
+
