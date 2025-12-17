@@ -50,7 +50,7 @@ docker run -d -p 5000:8080 --name gabriele danielcard99/golang:latest
 
 - Só altere a porta interna se quiser mudar onde a app escuta de fato
 
-## TAG
+## BUILD & TAG
 
 para dar uma tag (nome + versão) na hora de "buildar" uma imagem usamos -t e o nome que você colocar vai ser o nome da imagem
 
@@ -74,11 +74,13 @@ No comando:
 docker build -t nome:tag .
 ```
 
-`nome` → nome da imagem
+- `-t` → define o nome (tag) da imagem
 
-`tag` → versão ou identificador (ex: v1, prod, alpine, etc.)
+- `nome` → nome da imagem
 
-`.` → contexto do build (a pasta atual)
+- `tag` → versão ou identificador (ex: v1, prod, alpine, etc.)
+
+- `.` → contexto do build (a pasta atual)
 
 ## IMAGEM SCRATCH
 
@@ -288,7 +290,7 @@ Tudo que estiver na pasta ./mysql (na sua máquina) será visto pelo MySQL como 
 
 Ela está dizendo ao Docker, pegue o arquivo local e monte dentro do container do nginx no caminho: `/etc/nginx/conf.d/default.` Ou seja, o nginx vai usar seu arquivo como configuração principal.
 
-NO container o arquivo tem que se chamar default.conf, o **nginx** por padrão, lê qualquer arquivo .conf dentrod a pasta `/etc/nginx/conf.d/`
+NO container o arquivo tem que se chamar default.conf, o **nginx** por padrão, lê qualquer arquivo .conf dentro da pasta `/etc/nginx/conf.d/`
 
 ## GIT FLOW
 
