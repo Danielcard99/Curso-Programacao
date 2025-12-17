@@ -387,9 +387,80 @@ git remote prune origin
 
 Isso remove do seu computador todas as referências remotas que não existem mais no GitHub.
 
+### Como apagar as branches que só existem remotamente:
+
+```bash
+git push origin --delete (nomeDaBranch)
+```
+
 ### PR TEMPLATES
 
 Para criar Templates para os PRs devemos criar uma pasta .github/PULL_REQUEST_TEMPLATE.md assim podemos criar o template em markdown
+
+## Git Tag
+
+Uma tag é um marcador fixo em um commit.
+Normalmente usada para:
+
+- versões (v1.0.0)
+
+- releases
+
+- marcos importantes
+
+Diferente de branch: tag não anda.
+
+### Tipos de tag
+
+1. **Lightweight tag (simples)**
+
+Só um ponteiro para o commit.
+
+2. **Annotated tag (recomendada)**
+
+Tem:
+
+- mensagem
+
+- autor
+
+- data
+
+- pode ser assinada (GPG)
+
+**Use sempre annotated.**
+
+### Criar uma tag (forma correta)
+
+- Tag anotada
+
+```bash
+git tag -a v1.0.0 -m "Primeira versão estável"
+```
+
+Isso marca o commit atual (HEAD).
+
+- **Tag em um commit específico**
+
+```bash
+git tag -a v1.0.0 <hash-do-commit> -m "Primeira versão"
+```
+
+### Enviar tag para o GitHub
+
+⚠️ Tags **não sobem automaticamente.**
+
+#### Enviar uma tag
+
+```bash
+git push origin v1.0.0
+```
+
+#### Enviar todas as tags
+
+```bash
+git push origin --tags
+```
 
 ## SemVer (Semantical Versioning)
 
