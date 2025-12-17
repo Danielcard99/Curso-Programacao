@@ -35,4 +35,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: false
-          tags: danielcard99/Curso-Programacao:latest
+          tags: danielcard99/curso-programacao:latest
