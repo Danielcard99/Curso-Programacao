@@ -393,6 +393,20 @@ Isso remove do seu computador todas as referências remotas que não existem mai
 git push origin --delete (nomeDaBranch)
 ```
 
+### Como corrigir uma mensagem de commit antes de fazer o push
+
+```bash
+git commit --amend
+```
+
+### Caso queira corrigir o ultimo commit sem abrir o vim(editor)
+
+```bash
+git commit --amend -m "digiteSuaMensagem"
+```
+
+o vim(editor) vai ser aberto, e é só editar a mensagem.
+
 ### PR TEMPLATES
 
 Para criar Templates para os PRs devemos criar uma pasta .github/PULL_REQUEST_TEMPLATE.md assim podemos criar o template em markdown
