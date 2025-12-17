@@ -645,3 +645,30 @@ O npx cz abrirá um prompt interativo para você escolher tipo, escopo, descriç
 
 ## CI - Integração Continua
 
+Integração Contínua (CI) é uma prática de desenvolvimento em que alterações de código são integradas frequentemente ao repositório principal e validadas automaticamente.
+
+### Como funciona
+
+- O código é alterado e enviado ao repositório
+
+- Um pipeline automático é executado
+
+- São rodados testes, lint e build
+
+- Se algo falhar, a integração é bloqueada
+
+### Benefícios da Integração Contínua
+
+- Identificação rápida de erros
+
+- Redução de conflitos entre códigos
+
+- Maior qualidade e estabilidade do software
+
+- Facilidade no trabalho em equipe
+
+- Menor risco de falhas em produção
+
+### Github Actions
+
+No GitHub Actions, o CI é configurado por meio de arquivos .yml ou .yaml dentro da pasta `.github/workflows`, onde são definidas as etapas do pipeline, como instalação de dependências, testes e build.
