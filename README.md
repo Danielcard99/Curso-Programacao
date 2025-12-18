@@ -697,9 +697,10 @@ Crie commitlint.config.js na raiz com:
 ```bash
 npm install --save-dev husky
 npx husky install
+npx husky init
 ```
 
-### Adicionar ao package.json (scripts):
+### Adicionar/Verificar no package.json (scripts):
 
 ```
 "scripts": {
@@ -710,7 +711,7 @@ npx husky install
 ### Criar hook para commit-msg:
 
 ```bash
-npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
+echo 'npx --no -- commitlint --edit "$1"' > .husky/commit-msg
 ```
 
 ### Fluxo de Uso:
