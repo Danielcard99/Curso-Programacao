@@ -9,16 +9,11 @@ jobs:
   check-application:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        go: ["1.22", "1.23"]
-
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
-          go-version: ${{ matrix.go }}
+          go-version: 1.23
 
           cache: false
 
@@ -29,3 +24,23 @@ jobs:
       - name: Run Go application
         working-directory: ./go
         run: go run math.go
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./go
+          file: ./go/Dockerfile
+          push: true
+          tags: danielcard99/curso-programacao:latest
