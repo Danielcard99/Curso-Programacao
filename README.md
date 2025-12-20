@@ -775,3 +775,5 @@ Login e senha iniciais são:
 - senha: admin
 
 Também precisamos o isntalar o SonarScanner para que possamos subir o projeto para o sonarqube
+
+não usar o sonar.login em lugar nenhum, melhor colocar o token em uma varavel de ambiente em um .env
