@@ -760,3 +760,18 @@ Integração Contínua (CI) é uma prática de desenvolvimento em que alteraçõ
 ### Github Actions
 
 No GitHub Actions, o CI é configurado por meio de arquivos .yml ou .yaml dentro da pasta `.github/workflows`, onde são definidas as etapas do pipeline, como instalação de dependências, testes e build.
+
+### Sonarqube
+
+comando para rodar o sonarqube em um container docker:
+
+```bash
+docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+```
+
+Login e senha iniciais são:
+
+- login: admin
+- senha: admin
+
+Também precisamos o isntalar o SonarScanner para que possamos subir o projeto para o sonarqube
