@@ -774,6 +774,113 @@ Login e senha iniciais são:
 - login: admin
 - senha: admin
 
-Também precisamos o isntalar o SonarScanner para que possamos subir o projeto para o sonarqube
+Também precisamos o instalar o SonarScanner para que possamos subir o projeto para o sonarqube
 
-não usar o sonar.login em lugar nenhum, melhor colocar o token em uma varavel de ambiente em um .env
+não usar o sonar.login em lugar nenhum, melhor colocar o token em uma variável de ambiente, em um arquivo .env
+
+no ci.yaml devemos colocar o on push e on pull_request, sempre os dois!
+
+### GOLANG
+
+para descobrir a porcentagem de cobertura de um código go devemos usar:
+
+```bash
+go test ./... -coverprofile=coverage.out
+```
+
+### Kubernetes
+
+Kubernetes (K8s) é uma plataforma open-source usada para automatizar a implantação, o dimensionamento (scaling) e o gerenciamento de aplicações em containers.
+
+#### Cluster
+
+Um cluster Kubernetes é formado por um conjunto de máquinas (físicas ou virtuais), divididas em:
+
+- Master (Control Plane) → gerencia o cluster
+- Workers (Nodes) → executam as aplicações
+
+#### Pods
+
+- Pod é a menor unidade do Kubernetes
+- Ele encapsula um ou mais containers
+- Cada Pod representa um processo em execução dentro do cluster
+- Na prática, usamos 1 container por Pod na maioria dos casos
+
+Se o Pod cair, ele deixa de existir — por isso usamos controladores como Deployments.
+o comando para usar no terminal é
+
+#### ReplicaSet
+
+Um ReplicaSet garante que o número desejado de Pods esteja sempre em execução.
+
+Exemplo:
+
+- Se você define 3 réplicas
+- O ReplicaSet mantém sempre 3 Pods ativos
+- Se 1 cair → ele cria outro automaticamente
+
+Observação importante:
+
+Você não define “quantos ReplicaSets existem”, e sim quantas réplicas de Pods ele deve manter.
+
+#### Deployment
+
+O Deployment é um nível acima do ReplicaSet.
+
+Ele é responsável por:
+
+- criar ReplicaSets
+- fazer atualizações gradativas (rolling updates)
+- versionar releases
+- permitir rollback
+
+#### Hierarquia no Kubernetes
+
+Deployment > ReplicaSet > Pod
+
+#### Service
+
+Um Service expõe os Pods na rede e atua como Load Balancer interno, distribuindo tráfego entre eles.
+
+Tipos mais comuns:
+
+- ClusterIP (padrão) → acesso interno ao cluster
+- NodePort → expõe na porta do Node
+- LoadBalancer → para cloud providers
+
+#### Ferramentas
+
+Você pode rodar Kubernetes localmente com:
+
+`kind (Kubernetes in Docker)`
+Permite criar clusters de teste dentro de containers Docker.
+
+Criar um cluster:
+
+```bash
+kind create cluster
+```
+
+#### kubectl
+
+É a CLI do Kubernetes.
+
+Exemplos:
+
+Lista Pods:
+
+```bash
+kubectl get pods
+```
+
+Lista Deployments:
+
+```bash
+kubectl get deployments
+```
+
+Aplica um manifesto YAML:
+
+```bash
+kubectl apply -f arquivo.yaml
+```
