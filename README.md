@@ -799,6 +799,12 @@ Um cluster Kubernetes é formado por um conjunto de máquinas (físicas ou virtu
 - Master (Control Plane) → gerencia o cluster
 - Workers (Nodes) → executam as aplicações
 
+com o kind criamos um cluster com:
+
+```bash
+kind create cluster --name (nome)
+```
+
 #### Pods
 
 - Pod é a menor unidade do Kubernetes
@@ -864,6 +870,12 @@ kind create cluster
 #### kubectl
 
 É a CLI do Kubernetes.
+
+Como instalar(fedora)
+
+```bash
+sudo dnf install -y kubernetes1.34-client
+```
 
 Exemplos:
 
