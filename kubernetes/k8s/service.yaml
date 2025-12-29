@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     app: goserver
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - name: goserver-service
       port: 80

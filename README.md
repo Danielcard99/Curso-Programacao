@@ -782,6 +782,12 @@ no ci.yaml devemos colocar o on push e on pull_request, sempre os dois!
 
 ### GOLANG
 
+para iniciar um arquivo golang devemos rodar:
+
+```bash
+go mod init (nomeDoProjeto)
+```
+
 para descobrir a porcentagem de cobertura de um código go devemos usar:
 
 ```bash
