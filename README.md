@@ -870,7 +870,7 @@ Permite criar clusters de teste dentro de containers Docker.
 Criar um cluster:
 
 ```bash
-kind create cluster
+kind create cluster --name (nomeDoCluster)
 ```
 
 #### kubectl
