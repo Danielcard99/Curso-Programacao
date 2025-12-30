@@ -16,10 +16,12 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "danielcard99/hello-go:v6"
+          image: "danielcard99/hello-go:v6.1"
           envFrom:
             - configMapRef:
                 name: goserver-env
+            - secretRef:
+                name: goserver-secret
 
           volumeMounts:
             - name: config
