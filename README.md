@@ -860,6 +860,10 @@ Tipos mais comuns:
 - NodePort → expõe na porta do Node
 - LoadBalancer → para cloud providers
 
+### Secret
+
+usamos para esconder nossos dados sensíveis quando usamos kubernetes
+
 #### Ferramentas
 
 Você pode rodar Kubernetes localmente com:
@@ -901,4 +905,12 @@ Aplica um manifesto YAML:
 
 ```bash
 kubectl apply -f arquivo.yaml
+```
+
+Port-Forward:
+
+com esse comando podemos acessar um Pod ou um Service do cluster através de uma porta local. Ele cria um túnel temporário.
+
+```bash
+kubectl port-forward service/NOME_DO_SERVICE PORTA_LOCAL:PORTA_DO_SERVICE
 ```
