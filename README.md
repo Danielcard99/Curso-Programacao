@@ -914,3 +914,21 @@ com esse comando podemos acessar um Pod ou um Service do cluster através de uma
 ```bash
 kubectl port-forward service/NOME_DO_SERVICE PORTA_LOCAL:PORTA_DO_SERVICE
 ```
+
+### Horizontal Pod AutoScaler (HPA)
+
+primeiro criamos um arquivo de metricas, o arquivo é .yaml
+
+usamos para poder escalar de forma horizontal os nossos pods, ou seja, criar novos pods com algumas metricas que estipulamos, podemos limitar o uso da cpu para assim que atingir esse limite, o kubernetes crie outro pod
+
+podemos limitar a quantidade minima e máxima de replicas
+
+Aplicação Stateless - é uma aplicação sem estado, nela não interessa quantas vezes as requisições acontecerem
+
+podemos criar volumes persistentes no kubernetes, para não perdermos dados, os dados ficam salvos, independentemente de nós apagarmos o pod, o volume estará no novo pod criado no lugar
+
+temos dois tipos PV(PersistentVolume) e PVC(PersistentVolumeClaim)
+
+### Stateless vs Stateful
+
+aplicações stateless não precisam guardar estado. já a stateful tem que manter estado.
