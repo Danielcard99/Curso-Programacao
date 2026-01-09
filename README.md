@@ -929,6 +929,67 @@ podemos criar volumes persistentes no kubernetes, para não perdermos dados, os 
 
 temos dois tipos PV(PersistentVolume) e PVC(PersistentVolumeClaim)
 
-### Stateless vs Stateful
+## Stateless vs Stateful
 
-aplicações stateless não precisam guardar estado. já a stateful tem que manter estado.
+### Aplicações Stateless
+
+Aplicações **stateless** não mantêm estado entre uma requisição e outra. Cada requisição é **totalmente independente**: o servidor não precisa lembrar quem é o cliente ou o que aconteceu antes. Todas as informações necessárias para processar a requisição vêm junto dela.
+
+**Características principais:**
+
+- Escalam facilmente
+- Facilitam balanceamento de carga
+- São ideais para ambientes distribuídos (como Kubernetes)
+
+**Exemplos clássicos:**
+
+- APIs REST
+- Autenticação via JWT (o token carrega o contexto do usuário)
+
+---
+
+### Aplicações Stateful
+
+Aplicações **stateful** mantêm estado entre requisições. O servidor **lembra do cliente**, existindo sessão, contexto ou dados armazenados em memória ou disco.
+
+**Características principais:**
+
+- Dependem de continuidade entre requisições
+- Podem ter dificuldades de escalar horizontalmente
+- Exigem mais cuidado em ambientes distribuídos
+
+**Exemplos clássicos:**
+
+- Sessões baseadas em cookies
+- Aplicações monolíticas mais antigas
+- Conexões WebSocket stateful
+
+---
+
+### StatefulSet vs Deployment no Kubernetes
+
+Quando usamos um **Deployment**, não há garantia de identidade fixa ou ordem entre as réplicas. Os pods são intercambiáveis, o que funciona muito bem para aplicações **stateless**.
+
+Já o **StatefulSet** é indicado para aplicações **stateful**, pois ele garante:
+
+- Identidade fixa para cada pod (nome estável)
+- Ordem previsível de criação e remoção
+- Associação estável com volumes persistentes
+
+Por padrão, o StatefulSet cria e remove os pods **em ordem** (ex: pod-0 → pod-1 → pod-2).
+
+Caso a aplicação **não precise** dessa ordem, é possível configurar:
+
+```yaml
+podManagementPolicy: Parallel
+```
+
+Com isso, os pods são criados e removidos **em paralelo**, ganhando velocidade sem perder a identidade fixa.
+
+---
+
+### ✅ Resumo rápido
+
+- **Stateless** → simples, escalável, ideal para Deployments
+- **Stateful** → mantém estado, exige controle, ideal para StatefulSets
+- **StatefulSet** resolve problemas de identidade, ordem e persistência no Kubernetes
