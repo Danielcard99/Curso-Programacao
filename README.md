@@ -993,3 +993,52 @@ Com isso, os pods são criados e removidos **em paralelo**, ganhando velocidade 
 - **Stateless** → simples, escalável, ideal para Deployments
 - **Stateful** → mantém estado, exige controle, ideal para StatefulSets
 - **StatefulSet** resolve problemas de identidade, ordem e persistência no Kubernetes
+
+### Ingress
+
+podemos instalar o ingress com o helm:
+
+#### Get Repo Info
+
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+
+#### Install Chart
+
+Important: only helm3 is supported
+
+helm install ingress-nginx ingress-nginx/ingress-nginx
+
+### Cert Manager
+
+Para instalar o cert-manager usamos:
+
+```bash
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.19.2/cert-manager.yaml
+```
+
+### Namespaces
+
+é como separamos nossos pods/services podemos separar os projetos em namespaces diferentes
+
+para criar um contexto novo usamos:
+
+```bash
+$ kubectl config set-context prod --namespace=prod --cluster=kind-kind --user=kind-kind
+
+```
+
+para trocar de contexto usamos:
+
+```
+kubectl config use-context prod
+```
+
+Conferir todos os contextos
+
+```bash
+kubectl config get-contexts
+```
+
+O contexto ativo aparece com \*.
+
